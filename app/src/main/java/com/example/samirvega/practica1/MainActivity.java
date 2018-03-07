@@ -6,14 +6,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText mlado,maltura,mbase,mradio,marea,mperimetro,mvolumen;
+    EditText mlado,maltura,mbase,mradio;
+    TextView marea,mperimetro,mvolumen;
     RadioButton mcuadro,mtriangulo,mcirculo,mcubo;
     String texto1="",texto2="";
-    double data1=0,data2=0;
+    double data1=0,data2=0,data3=0;
     int fig=0;
 
     @Override
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         data2 = data2 * 4;
                         marea.setText(String.valueOf(data1));
                         mperimetro.setText(String.valueOf(data2));
+                        mvolumen.setText("");
                     }
                 }
                 break;
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         data2 = data2 * data2 * 3.14159;
                         marea.setText(String.valueOf(data2));
                         mperimetro.setText(String.valueOf(data1));
+                        mvolumen.setText("");
                     }
                 }
 
@@ -123,10 +127,12 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         data1 = Double.parseDouble(maltura.getText().toString());
                         data2 = Double.parseDouble(mbase.getText().toString());
-                        data1 = data1 * data2 / 2;
-                        data2 = data2 * 1;
-                        marea.setText(String.valueOf(data1));
+                        data3 = data1 * data2 / 2;
+                        data2 = Math.sqrt(data1*data1+data2*data2);
+                        data2 = data2+Double.parseDouble(maltura.getText().toString())+Double.parseDouble(mbase.getText().toString());
+                        marea.setText(String.valueOf(data3));
                         mperimetro.setText(String.valueOf(data2));
+                        mvolumen.setText("");
                     }
                 }
 
@@ -139,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
                         data1 = Double.parseDouble(mlado.getText().toString());
                         data1 = data1 * data1 * data1;
                         mvolumen.setText(String.valueOf(data1));
+                        marea.setText("");
+                        mperimetro.setText("");
                     }
                 }
         }
